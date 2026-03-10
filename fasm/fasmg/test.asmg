@@ -1,0 +1,46 @@
+; Implementation of the F-4 assembly language
+; <http://www.dkeng.com/misc.html>
+; 0001 XXXX	ADD <imm>
+; 0002 XXXX	ADD [<addr>]
+; 0004		ADD PC
+; 0008 XXXX	BVS <addr>
+; 0010 XXXX	LDA <imm>
+; 0020 XXXX	LDA [<addr>]
+; 0040		LDA PC
+; 0080 XXXX	STA [<addr>]
+; 0100		STA PC
+
+macro ADD? operand*
+	match =PC,operand
+		dw 0x04, 0x00
+	else match [value],operand
+		dw 0x02, value
+	else
+		dw 0x01, value
+	end match
+end macro
+
+macro BVS? operand
+	dw 0x08, operand
+end macro
+
+macro LDA? operand
+	match =PC,operand
+		dw 0x40, 0x00
+	else match [value],operand
+		dw 0x20, value
+	else
+		dw 0x10, value
+	end match
+end macro
+
+macro STA? operand
+	match =PC,operand
+		dw 0x100, 0x00
+	else match [value],operand
+		dw 0x80, value
+	else
+		display "Invalid operand to SRC instruction."
+		err
+	end match
+end macro

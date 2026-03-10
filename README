@@ -1,0 +1,23 @@
+To install vimscripts use the shell script 'install.sh' like so:
+
+	./install.sh {options}
+
+Where options are the following:
+
+	-a
+
+		Set 'which' to ALL.
+
+	-p <vimpath>
+
+		Set the path where the syntax and ftdetect folders should be
+		found.
+
+	-t
+
+		Run vim on the specified 'which' test file.
+
+	-w <which>
+
+		Set which language to install, if ALL is specified, all
+		languages will be installed.
