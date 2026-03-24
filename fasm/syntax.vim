@@ -17,12 +17,11 @@ syn keyword	fasmDirective		iterate indx postpone irpv outscope
 syn keyword	fasmDirective		rawmatch rmatch org virtual as load
 syn keyword	fasmDirective		store from restartout include eval
 syn keyword	fasmDirective		display err format executable binary
-syn keyword	fasmDirective		isolatelines removecomments
+syn keyword	fasmDirective		isolatelines removecomments match
 syn keyword	fasmDirective		retaincomments calminstruction
-syn keyword	fasmClashingDirective	match
 
 syn keyword	fasmCalminstruction	containedin=fasmCALM
-syn keyword	fasmCalminstruction	assemble match jyes jno jump exit
+syn keyword	fasmCalminstruction	assemble jyes jno jump exit
 syn keyword	fasmCalminstruction	arrange compute check publish
 syn keyword	fasmCalminstruction	transform stringify take call taketext
 
@@ -71,6 +70,8 @@ syn keyword	fasmInstruction		shlx shr shrd shrx slwpcb stc std stos
 syn keyword	fasmInstruction		stosb stosw stosd stosq sub t1mskc test
 syn keyword	fasmInstruction		tzcnt tzmsk ud0 ud1 ud2 wrfsbase
 syn keyword	fasmInstruction		wrgsbase xadd xchg xlat xlatb xor
+syn keyword	fasmInstructionModifier	rep repne repe repnz repz far near
+syn keyword	fasmInstructionModifier	short
 
 syn keyword	fasmSystemInstruction	arpl clac clgi cli clts clrssbsy hlt
 syn keyword	fasmSystemInstruction	incssp int3 invd invlpg invlpga
@@ -378,6 +379,7 @@ hi def link	fasmSystemInstruction	Keyword
 hi def link	fasmMediaInstruction	Identifier
 hi def link	fasmSSEInstruction	Identifier
 hi def link	fasmX86Instruction	Identifier
+hi def link	fasmInstructionModifier	Special
 hi def link	fasmOperator		Keyword
 hi def link	fasmComment		Comment
 
