@@ -23,7 +23,6 @@
 ;	form of <list>. In either case a new macro is defined of the identifier
 ;	specified with the contents specified.
 
-
 \\program{ ; This is a text macro
 \\movax{[B8 $$]\purge$}
 \\int[CD]

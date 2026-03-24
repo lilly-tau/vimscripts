@@ -9,7 +9,7 @@ endif
 
 setlocal ignorecase
 
-syn match	lasNumber	/\x\x\(\x\x\(\x\x\x\x\(\x\x\x\x\x\x\x\x\)\?\)\?\)\?/
+syn match	lasNumber	/\x\x\(\x\x\(\x\x\x\x\(\x\x\x\x\x\x\x\x\)\?\)\?\)\?/ contained
 syn match	lasSymbol	/[{}[\]]/
 syn match	lasBuiltin	/\\\\\|\\null/
 syn match	lasDefineIdent	/\(\\\\\)\@<=\([~!@#$%^&*()-+=`{}[\]|;'",.<>/]\|\a\+\)/
