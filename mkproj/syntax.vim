@@ -16,8 +16,9 @@ syn keyword mkprojExprKeyword eq not cat contained
 syn match mkprojVarIdentifier /[A-Za-z_]/ contained
 
 syn region mkprojComment start=/@/ end=/$/
-syn region mkprojLabel start=/\(@\)\@<!@\(@\)\@!/ end=/:\|$/ containedin=mkprojComment
-syn region mkprojType start=/@@/ end=/:\|$/ containedin=mkprojComment
+syn region mkprojLabel start=/\(@\)\@<!@\(@\)\@!\(.*:\)\@=/ end=/:/ contained containedin=mkprojComment
+syn region mkprojType start=/@@\(.*:\)\@=/ end=/:/ contained containedin=mkprojComment
+syn match mkprojExit /@@\(.*:\)\@!/ contained containedin=mkprojComment
 
 syn match mkprojPipe /^[ \t,]*|[|&$]*/
 
@@ -39,6 +40,7 @@ syn region mkprojInput start=/<[ \t]/ end=/$/ contains=mkprojVarIdentifier
 hi def link mkprojComment	Comment
 hi def link mkprojLabel		Keyword
 hi def link mkprojType		Identifier
+hi def link mkprojExit		Identifier
 
 hi def link mkprojExprKeyword	Keyword
 hi def link mkprojExprSymbol	Special
