@@ -15,7 +15,7 @@ syn match	lasBuiltin	/\\\\\|\\null/
 syn match	lasDefineIdent	/\(\\\\\)\@<=\([~!@#$%^&*()-+=`{}[\]|;'",.<>/]\|\a\+\)/
 syn match	lasInvoke	/\\\([~!@#$%^&*()-+=`{}[\]|;'",.<>/]\|\a\+\)/
 syn region	lasComment	start=/;/ end=/$/
-syn region	lasByteList	start=/\[\@<=./ end=/\]\@=/ contains=lasNumber
+syn region	lasByteList	start=/\(`\@<!\[\)\@<=./ end=/\(`\@<!\]\)\@=/ contains=lasNumber
 
 hi def link	lasNumber	Number
 hi def link	lasSymbol	Special
