@@ -37,7 +37,7 @@ syn region mkprojMkdir start=/\~[ \t,]\+/ end=/$/ contains=mkprojIdentifier,mkpr
 syn region mkprojOutput start=/>[012]\?[ \t]/ end=/$/ contains=mkprojIdentifier,mkprojString,mkprojVar
 syn region mkprojInput start=/<[ \t]/ end=/$/ contains=mkprojVarIdentifier
 
-syn keyword mkprojDirectiveKeyword include call return
+syn keyword mkprojDirectiveKeyword include call return contained
 syn region mkprojDirective start=/#[A-Za-z_]\+/ end=/$/ contains=mkprojDirectiveKeyword,mkprojIdentifier,mkprojString,mkprojVar,mkprojGoto
 
 hi def link mkprojComment	Comment
