@@ -39,6 +39,7 @@ syn region mkprojDirective start=/#[A-Za-z_]\+/ end=/$/ contains=mkprojDirective
 
 syn region mkprojSet start=/\\[ \t]/ end=/[ \t,]\+/ contains=mkprojVarIdentifier
 syn region mkprojSetValue start=/\(\\[ \t]\+[A-Za-z_]\+[ \t,]\+\)\@<=/ end=/$/ contains=mkprojString,mkprojIdentifier,mkprojVar
+syn region mkprojSetValueExpr start=/\(\\[ \t]\+[A-Za-z_]\+[ \t,]\+\)\@<=[ \t]*([ \t]\@=/ end=/[ \t]\@<=)/ contains=mkprojExprKeyword,mkprojExprSymbol,mkprojString,mkprojVar,mkprojVar,mkprojIdentifier
 
 hi def link mkprojComment	Comment
 hi def link mkprojLabel		Keyword

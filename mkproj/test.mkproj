@@ -4,7 +4,6 @@
 #return
 
 		@@help:
-
 #call %goto
 
 > "Exiting help...\n"
