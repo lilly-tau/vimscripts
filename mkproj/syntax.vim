@@ -12,7 +12,7 @@ syn match mkprojIdentifier /[A-Za-z_]\+/ contained
 syn region mkprojString start=/\"/ skip=/\\\"/ end=/\"/ contained
 syn match mkprojStringEscape /\\[nrt"]\|\\x\x\x/ contained containedin=mkprojString
 syn match mkprojVar /\$[A-Za-z_]\+/ contained
-syn keyword mkprojExprKeyword eq not cat contained
+syn keyword mkprojExprKeyword eq not cat curdir contained
 syn match mkprojVarIdentifier /[A-Za-z_]/ contained
 
 syn region mkprojComment start=/@/ end=/$/
@@ -27,7 +27,8 @@ syn region mkprojPipeNoVar start=/\(^|[|&]*[ \t,]*\)\@<=/ end=/$/
 
 syn region mkprojGotoIfVar start=/?/ end=/$\|[ \t,]\+/ contains=mkprojVarIdentifier
 syn region mkprojGotoIfExpr start=/?(/ end=/)/ contains=mkprojExprKeyword,mkprojExprSymbol,mkprojString,mkprojVar,mkprojVar,mkprojIdentifier
-syn region mkprojGoto start=/%/ end=/\([ \t,\r\n]\|\$\)\@=/
+syn region mkprojGoto start=/%\$\@!/ end=/\([ \t,\r\n]\|\$\)\@=/
+syn region mkprojGotoVar start=/%\$/ end=/\([ \t,\r\n]\|\$\)\@=/ contains=mkprojVarIdentifier
 
 syn region mkprojMkdir start=/\~[ \t,]\+/ end=/$/ contains=mkprojIdentifier,mkprojString,mkprojVar
 
@@ -55,6 +56,7 @@ hi def link mkprojStringEscape	Special
 hi def link mkprojVarIdentifier	Identifier
 hi def link mkprojVar		Identifier
 hi def link mkprojGoto		Type
+hi def link mkprojGotoVar	Type
 
 hi def link mkprojPipeVar	Identifier
 hi def link mkprojPipeNoVar	String
