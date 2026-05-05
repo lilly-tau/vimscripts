@@ -27,10 +27,7 @@ syn region mkprojPipeNoVar start=/\(^|[|&]*[ \t,]*\)\@<=/ end=/$/
 
 syn region mkprojGotoIfVar start=/?/ end=/$\|[ \t,]\+/ contains=mkprojVarIdentifier
 syn region mkprojGotoIfExpr start=/?(/ end=/)/ contains=mkprojExprKeyword,mkprojExprSymbol,mkprojString,mkprojVar,mkprojVar,mkprojIdentifier
-syn region mkprojGoto start=/%/ end=/$\|[ \t,]\+/
-
-syn region mkprojSet start=/\\[ \t]/ end=/[ \t,]\+/ contains=mkprojVarIdentifier
-syn region mkprojSetValue start=/\(\\[ \t]\+[A-Za-z_]\+[ \t,]\+\)\@<=/ end=/$/ contains=mkprojString,mkprojIdentifier,mkprojVar
+syn region mkprojGoto start=/%/ end=/\([ \t,\r\n]\|\$\)\@=/
 
 syn region mkprojMkdir start=/\~[ \t,]\+/ end=/$/ contains=mkprojIdentifier,mkprojString,mkprojVar
 
@@ -39,6 +36,9 @@ syn region mkprojInput start=/<[ \t]/ end=/$/ contains=mkprojVarIdentifier
 
 syn keyword mkprojDirectiveKeyword include call return contained
 syn region mkprojDirective start=/#[A-Za-z_]\+/ end=/$/ contains=mkprojDirectiveKeyword,mkprojIdentifier,mkprojString,mkprojVar,mkprojGoto
+
+syn region mkprojSet start=/\\[ \t]/ end=/[ \t,]\+/ contains=mkprojVarIdentifier
+syn region mkprojSetValue start=/\(\\[ \t]\+[A-Za-z_]\+[ \t,]\+\)\@<=/ end=/$/ contains=mkprojString,mkprojIdentifier,mkprojVar
 
 hi def link mkprojComment	Comment
 hi def link mkprojLabel		Keyword
