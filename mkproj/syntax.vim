@@ -37,6 +37,9 @@ syn region mkprojMkdir start=/\~[ \t,]\+/ end=/$/ contains=mkprojIdentifier,mkpr
 syn region mkprojOutput start=/>[012]\?[ \t]/ end=/$/ contains=mkprojIdentifier,mkprojString,mkprojVar
 syn region mkprojInput start=/<[ \t]/ end=/$/ contains=mkprojVarIdentifier
 
+syn keyword mkprojDirectiveKeyword include
+syn region mkprojDirective start=/#[A-Za-z_]\+[ \t]/ end=/$/ contains=mkprojDirectiveKeyword,mkprojIdentifier,mkprojString,mkprojVar
+
 hi def link mkprojComment	Comment
 hi def link mkprojLabel		Keyword
 hi def link mkprojType		Identifier
@@ -66,5 +69,8 @@ hi def link mkprojMkdir		Special
 
 hi def link mkprojOutput	Special
 hi def link mkprojInput		Special
+
+hi def link mkprojDirectiveKeyword	Special
+hi def link mkprojDirective		Special
 
 let b:current_syntax = "mkproj"
