@@ -12,7 +12,7 @@ syn match mkprojIdentifier /[A-Za-z_]\+/ contained
 syn region mkprojString start=/\"/ skip=/\\\"/ end=/\"/ contained
 syn match mkprojStringEscape /\\[nrt"]\|\\x\x\x/ contained containedin=mkprojString
 syn match mkprojVar /\$[A-Za-z_]\+/ contained
-syn keyword mkprojExprKeyword eq not cat curdir contained
+syn keyword mkprojExprKeyword eq not cat curdir car cdr cons contained
 syn match mkprojVarIdentifier /[A-Za-z_]/ contained
 
 syn region mkprojComment start=/@/ end=/$/
@@ -20,13 +20,17 @@ syn region mkprojLabel start=/\(@\)\@<!@\(@\)\@!\(.*:\)\@=/ end=/:/ contained co
 syn region mkprojType start=/@@\(.*:\)\@=/ end=/:/ contained containedin=mkprojComment
 syn match mkprojExit /@@\(.*:\)\@!/ contained containedin=mkprojComment
 
+syn region mkprojSet start=/\\[ \t]/ end=/[ \t,]\+/ contains=mkprojVarIdentifier
+syn region mkprojSetValue start=/\(\\[ \t]\+[A-Za-z_]\+[ \t,]\+\)\@<=/ end=/$/ contains=mkprojString,mkprojIdentifier,mkprojVar
+syn region mkprojSetValueExpr start=/\(\\[ \t]\+[A-Za-z_]\+[ \t,]\+\)\@<=[ \t]*([ \t]\@=/ end=/[ \t]\@<=)/ contains=mkprojExprKeyword,mkprojExprSymbol,mkprojString,mkprojVar,mkprojVar,mkprojIdentifier,mkprojSet,mkprojSetValueExpr
+
 syn match mkprojPipe /^[ \t,]*|[|&$]*/
 
 syn region mkprojPipeVar start=/\(^|[|&]*$[|&]*[ \t,]*\)\@<=/ end=/$/ contains=mkprojVarIdentifier
 syn region mkprojPipeNoVar start=/\(^|[|&]*[ \t,]*\)\@<=/ end=/$/
 
 syn region mkprojGotoIfVar start=/?/ end=/$\|[ \t,]\+/ contains=mkprojVarIdentifier
-syn region mkprojGotoIfExpr start=/?(/ end=/)/ contains=mkprojExprKeyword,mkprojExprSymbol,mkprojString,mkprojVar,mkprojVar,mkprojIdentifier
+syn region mkprojGotoIfExpr start=/?(/ end=/)/ contains=mkprojExprKeyword,mkprojExprSymbol,mkprojString,mkprojVar,mkprojVar,mkprojIdentifier,mkprojSet,mkprojSetValueExpr
 syn region mkprojGoto start=/%\$\@!/ end=/\([ \t,\r\n]\|\$\)\@=/
 syn region mkprojGotoVar start=/%\$/ end=/\([ \t,\r\n]\|\$\)\@=/ contains=mkprojVarIdentifier
 
@@ -37,10 +41,6 @@ syn region mkprojInput start=/<[ \t]/ end=/$/ contains=mkprojVarIdentifier
 
 syn keyword mkprojDirectiveKeyword include call return contained
 syn region mkprojDirective start=/#[A-Za-z_]\+/ end=/$/ contains=mkprojDirectiveKeyword,mkprojIdentifier,mkprojString,mkprojVar,mkprojGoto
-
-syn region mkprojSet start=/\\[ \t]/ end=/[ \t,]\+/ contains=mkprojVarIdentifier
-syn region mkprojSetValue start=/\(\\[ \t]\+[A-Za-z_]\+[ \t,]\+\)\@<=/ end=/$/ contains=mkprojString,mkprojIdentifier,mkprojVar
-syn region mkprojSetValueExpr start=/\(\\[ \t]\+[A-Za-z_]\+[ \t,]\+\)\@<=[ \t]*([ \t]\@=/ end=/[ \t]\@<=)/ contains=mkprojExprKeyword,mkprojExprSymbol,mkprojString,mkprojVar,mkprojVar,mkprojIdentifier
 
 hi def link mkprojComment	Comment
 hi def link mkprojLabel		Keyword
