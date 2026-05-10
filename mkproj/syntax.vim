@@ -12,7 +12,7 @@ syn match mkprojIdentifier /[A-Za-z_]\+/ contained
 syn region mkprojString start=/\"/ skip=/\\\"/ end=/\"/ contained
 syn match mkprojStringEscape /\\[nrt"]\|\\x\x\x/ contained containedin=mkprojString
 syn match mkprojVar /\$[A-Za-z_]\+/ contained
-syn keyword mkprojExprKeyword eq not cat curdir car cdr cons contained
+syn keyword mkprojExprKeyword eq not cat curdir car cdr cons atom contained
 syn match mkprojVarIdentifier /[A-Za-z_]/ contained
 
 syn region mkprojComment start=/@/ end=/$/
@@ -39,7 +39,7 @@ syn region mkprojMkdir start=/\~[ \t,]\+/ end=/$/ contains=mkprojIdentifier,mkpr
 syn region mkprojOutput start=/>[012]\?[ \t]/ end=/$/ contains=mkprojIdentifier,mkprojString,mkprojVar
 syn region mkprojInput start=/<[ \t]/ end=/$/ contains=mkprojVarIdentifier
 
-syn keyword mkprojDirectiveKeyword include call return contained
+syn keyword mkprojDirectiveKeyword include call return execute contained
 syn region mkprojDirective start=/#[A-Za-z_]\+/ end=/$/ contains=mkprojDirectiveKeyword,mkprojIdentifier,mkprojString,mkprojVar,mkprojGoto
 
 hi def link mkprojComment	Comment
