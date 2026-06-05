@@ -1,0 +1,14 @@
+
+; Puts a character to the terminal
+@PUTC WITH CHAR $C DONE
+
+; Entry point
+@MAIN
+USING	WORD $I
+DO
+	SET $I U10
+	WHILE $I DO
+		@PUTC U21
+		SET $I ( + $I -U01 )
+	DONE
+DONE
