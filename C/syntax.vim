@@ -24,9 +24,9 @@ syn match	CCharConst	/'\(\\'\|[A-Za-z0-9!"#%&`()*+,\-./:;<=>?\[\\\]^_{|}\~ \t\v\
 syn match	CStrConst	/"\(\\"\|[A-Za-z0-9!'#%&`()*+,\-./:;<=>?\[\\\]^_{|}\~ \t\v\f]\)\+"/ contains=CEscapeSeq
 syn match	CHeaderName	/\(include[ \r\n\t\f\v]\+\)\@<=<[A-Za-z0-9!"'#%&`()*+,\-./:;<=?\[\\\]^_{|}\~ \t\v\f]*>/ contained
 syn match	CHeaderName	/\(include[ \r\n\t\f\v]\+\)\@<="[A-Za-z0-9!'#%&`()*+,\-./:;<=>?\[\\\]^_{|}\~ \t\v\f]*"/ contained
-syn match	CComment	/\/\*.*\*\//
 syn match	CLabel		/[_a-zA-Z][_a-zA-Z0-9]\+:/
 syn region	CPreproc	start=/#/ skip=/\\r\?\n/ end=/\r\?\n/ contains=CHeaderName,CStrConst,CIntConst,CFloatConst,CKeyword,CType,CQualifier,CComment,CLabel
+syn region	CComment	start=/\/*/ end=/*\//
 
 hi def link	CKeyword	Keyword
 hi def link	CType		Type
